@@ -11,7 +11,7 @@ function main() {
 }
 
 function getParkInfo(stateName, numOfParks) {
-  const searchUrl = `https://developer.nps.gov/api/v1/parks?stateCode=[${stateName}]&limit=${numOfParks}&api_key=WLKboTCTVvJk4NTP6ljXAddPfHaBw5ZPb0IAChen`;
+  const searchUrl = `https://developer.nps.gov/api/v1/parks?stateCode=[${stateName}]&limit=${numOfParks}&api_key=`;
 
   fetch(searchUrl)
     .then(response => {
