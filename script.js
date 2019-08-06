@@ -25,8 +25,7 @@ function getParkInfo(stateName, numOfParks) {
   }
 
   const userURLInfo = formatUserQuery(params);
-  const newSearchURL = searchUrl + '?' + userURLInfo;
-
+  const newSearchURL = searchUrl + '?' + userURLInfo
 
 
   fetch(newSearchURL)
