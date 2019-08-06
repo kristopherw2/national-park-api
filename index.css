@@ -1,0 +1,15 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.data-firstname, .data-description, .data-url {
+    margin: auto auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.data-description {
+    border: 1px solid black;
+}

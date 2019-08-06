@@ -1,4 +1,11 @@
-const apiKey = "";
+
+const apiKey = "WLKboTCTVvJk4NTP6ljXAddPfHaBw5ZPb0IAChen";
+const searchUrl = `https://developer.nps.gov/api/v1/parks`;
+
+function formatUserQuery (params){
+  const formattedQuery = Object.keys(params).map(key => `${encodeURIComponent(key)}=${encodeURIComponent(params[key])}`)
+  return formattedQuery.join('&');
+}
 
 function main() {
   $(`fieldset`).on("click", "#submit", function () {
@@ -11,9 +18,18 @@ function main() {
 }
 
 function getParkInfo(stateName, numOfParks) {
-  const searchUrl = `https://developer.nps.gov/api/v1/parks?stateCode=[${stateName}]&limit=${numOfParks}&api_key=WLKboTCTVvJk4NTP6ljXAddPfHaBw5ZPb0IAChen`;
+  const params = {
+    "stateCode": stateName,
+    "limit": numOfParks,
+    "api_key": apiKey
+  }
 
-  fetch(searchUrl)
+  const userURLInfo = formatUserQuery(params);
+  const newSearchURL = searchUrl + '?' + userURLInfo;
+
+
+
+  fetch(newSearchURL)
     .then(response => {
       if (response.ok) {
         return response.json();
@@ -36,9 +52,9 @@ function displayResults (responseJson) {
   $('.search-results').empty();
   responseJson.data.forEach((data) => {
   $('.search-results').append(`
-        <div>${data.fullName}</div>  
-        <div>${data.description}</div>
-        <div>${data.url}</div>
+        <div class="data-firstname">${data.fullName}</div>  
+        <div class="data-description">${data.description}
+        <p class="data-url"><a href="${data.url}">${data.url}</a></p></div>
      `)
   })
 
